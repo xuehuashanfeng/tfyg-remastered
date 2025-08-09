@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2fej8tcfns8q"]
+
+[ext_resource type="PackedScene" uid="uid://qxxl4abmvc10" path="res://entities/characters/cicname2.tscn" id="1_dl1d0"]
+[ext_resource type="PackedScene" uid="uid://dvsiw04bfm05o" path="res://entities/player_boss.tscn" id="2_7ydql"]
+[ext_resource type="Texture2D" uid="uid://d0hmudkg27ec5" path="res://fucker/1753011570768.png" id="3_85w88"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_1hapx"]
+vertices = PackedVector3Array(-49.5, 0.4995, -72.2417, -49.5, 0.4995, 26.7583, 49.5, 0.4995, 26.7583, 49.5, 0.4995, -72.2417)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_67f06"]
+panorama = ExtResource("3_85w88")
+
+[sub_resource type="Sky" id="Sky_31neg"]
+sky_material = SubResource("PanoramaSkyMaterial_67f06")
+
+[sub_resource type="Environment" id="Environment_x4w2v"]
+background_mode = 2
+sky = SubResource("Sky_31neg")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D"]
+navigation_mesh = SubResource("NavigationMesh_1hapx")
+
+[node name="schoolhouse" type="Node3D" parent="."]
+
+[node name="floor" type="CSGBox3D" parent="schoolhouse"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -22.7417)
+size = Vector3(100, 0.001, 100)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Cicname2" parent="." instance=ExtResource("1_dl1d0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000657082, 2.95442, -0.000215292)
+
+[node name="Player" parent="." instance=ExtResource("2_7ydql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.36811, -18.4212)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_x4w2v")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 7.21037, 0)
+light_color = Color(0, 1, 1, 1)
+sky_mode = 1
